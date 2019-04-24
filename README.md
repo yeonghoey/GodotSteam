@@ -1,11 +1,7 @@
-# GodotSteam Minimal for Godot 3
-Steam API for the Godot game engine (version 3 to 3.0.6). For the Windows, Linux, and Mac platforms.  This minimal build contains all the basic stuff that the majority of games use; cutting out the more advanced and less common functions.
+# GodotSteam Minimal for Godot 3.x
+Steam API for the Godot game engine (version 3 to 3.1.1). For the Windows, Linux, and Mac platforms.  This minimal build contains all the basic stuff that the majority of games use; cutting out the more advanced and less common functions.
 
-Additional flavors include: [Godot 2.x](https://github.com/Gramps/GodotSteam/tree/godot2), [Godot 2.x Minimal](https://github.com/Gramps/GodotSteam/tree/godot2-min), [Godot 3.x](https://github.com/Gramps/GodotSteam/tree/godot3), [Godot 3.1](https://github.com/Gramps/GodotSteam/tree/master), [Godot 3.1 Minimal](https://github.com/Gramps/GodotSteam/tree/godot31-min), [Server](https://github.com/Gramps/GodotSteam/tree/server), and [GDNative](https://github.com/Gramps/GodotSteam/tree/gdnative).
-
-Notice
-----------
-Upon the release of Godot 3.2, the Godot3 and Master branch will merge as there is no difference between the two.  The **godot3 branch** will be deleted and all Godot 3.x version will run off the **master branch**.  The **godot3-min** and **godot31-min** will also be merged into the same **godot3-min** branch.
+Additional flavors include: [Godot 2.x](https://github.com/Gramps/GodotSteam/tree/godot2), [Godot 2.x Minimal](https://github.com/Gramps/GodotSteam/tree/godot2-min), [Godot 3.x](https://github.com/Gramps/GodotSteam/tree/master), [Server](https://github.com/Gramps/GodotSteam/tree/server), and [GDNative](https://github.com/Gramps/GodotSteam/tree/gdnative).
 
 Documentation
 ----------
