@@ -676,7 +676,8 @@ class Steam: public Object {
 		void _user_achievement_icon_fetched(UserAchievementIconFetched_t *callData, bool bIOFailure);
 		STEAM_CALLBACK(Steam, _user_achievement_stored, UserAchievementStored_t);
 		CCallResult<Steam, UserStatsReceived_t> callResultUserStatsReceived;
-		void _user_stats_received(UserStatsReceived_t *callData, bool bIOFailure);
+		void _user_stats_received_callresult(UserStatsReceived_t *callData, bool bIOFailure);
+		STEAM_CALLBACK(Steam, _user_stats_received_callback, UserStatsReceived_t);
 		STEAM_CALLBACK(Steam, _user_stats_stored, UserStatsStored_t);
 		STEAM_CALLBACK(Steam, _user_stats_unloaded, UserStatsUnloaded_t);
 

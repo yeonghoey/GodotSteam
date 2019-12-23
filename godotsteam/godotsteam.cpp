@@ -2671,7 +2671,11 @@ void Steam::_user_achievement_stored(UserAchievementStored_t* callData){
 	emit_signal("user_achievement_stored", game, groupAchieve, name, currentProgress, maxProgress);
 }
 // Called when the latest stats and achievements for a specific user (including the local user) have been received from the server.
-void Steam::_user_stats_received(UserStatsReceived_t* callData, bool bIOFailure){
+void Steam::_user_stats_received_callback(UserStatsReceived_t* callData){
+	_user_stats_received_callresult(callData, false);
+}
+
+void Steam::_user_stats_received_callresult(UserStatsReceived_t* callData, bool bIOFailure){
 	CSteamID gameID = callData->m_nGameID;
 	uint64_t game = gameID.ConvertToUint64();
 	uint32_t result = callData->m_eResult;
@@ -4340,7 +4344,7 @@ void Steam::requestUserStats(uint64_t steamID){
 	}
 	CSteamID userID = (uint64)steamID;
 	SteamAPICall_t apiCall = SteamUserStats()->RequestUserStats(userID);
-	callResultUserStatsReceived.Set(apiCall, this, &Steam::_user_stats_received);
+	callResultUserStatsReceived.Set(apiCall, this, &Steam::_user_stats_received_callresult);
 }
 // Reset all Steam statistics; optional to reset achievements.
 bool Steam::resetAllStats(bool achievementsToo){
