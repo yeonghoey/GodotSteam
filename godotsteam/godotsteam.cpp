@@ -2637,7 +2637,7 @@ void Steam::_number_of_current_players(NumberOfCurrentPlayers_t *callData, bool 
 	emit_signal("number_of_current_players", callData->m_bSuccess && bIOFailure, callData->m_cPlayers);
 }
 // Result of an achievement icon that has been fetched.
-void Steam::_user_achievement_icon_fetched(UserAchievementIconFetched_t* callData, bool bIOFailure){
+void Steam::_user_achievement_icon_fetched(UserAchievementIconFetched_t* callData){
 	uint64_t gameID = callData->m_nGameID.ToUint64();
 	String achievementName = callData->m_rgchAchievementName;
 	bool achieved = callData->m_bAchieved;
@@ -4074,12 +4074,11 @@ String Steam::getAchievementDisplayAttribute(const String& name, const String& k
 	return SteamUserStats()->GetAchievementDisplayAttribute(name.utf8().get_data(), key.utf8().get_data());
 }
 //Gets the icon for an achievement
-void Steam::getAchievementIcon(const String& name){
+int Steam::getAchievementIcon(const String& name){
 	if(SteamUserStats() == NULL){
-		return;
+		return 0;
 	}
-	SteamAPICall_t apiCall = SteamUserStats()->GetAchievementIcon(name.utf8().get_data());
-	callResultUserAchievementIconFetched.Set(apiCall, this, &Steam::_user_achievement_icon_fetched);
+	return SteamUserStats()->GetAchievementIcon(name.utf8().get_data());
 }
 // Gets the 'API name' for an achievement index
 String Steam::getAchievementName(uint32_t achievement){
@@ -5047,7 +5046,7 @@ void Steam::_bind_methods(){
 	ADD_SIGNAL(MethodInfo("leaderboard_score_uploaded", PropertyInfo(Variant::BOOL, "success"), PropertyInfo(Variant::INT, "score"), PropertyInfo(Variant::BOOL, "score_changed"), PropertyInfo(Variant::INT, "global_rank_new"), PropertyInfo(Variant::INT, "global_rank_previous")));
 	ADD_SIGNAL(MethodInfo("leaderboard_ugc_set"));
 	ADD_SIGNAL(MethodInfo("number_of_current_players", PropertyInfo(Variant::BOOL, "success"), PropertyInfo(Variant::INT, "players")));
-	ADD_SIGNAL(MethodInfo("user_achievement_icon_fetched", PropertyInfo(Variant::INT, "gameID"), PropertyInfo(Variant::STRING, "achievementName"), PropertyInfo(Variant::BOOL, "achieved"), PropertyInfo(Variant::INT, "iconHandle")));
+	ADD_SIGNAL(MethodInfo("user_achievement_icon_fetched", PropertyInfo(Variant::INT, "gameID"), PropertyInfo(Variant::STRING, "achievementName"), PropertyInfo(Variant::BOOL, "achieved"), PropertyInfo(Variant::INT, "width"), PropertyInfo(Variant::POOL_BYTE_ARRAY, "data")));
 	ADD_SIGNAL(MethodInfo("user_achievement_stored"));
 	ADD_SIGNAL(MethodInfo("user_stats_received", PropertyInfo(Variant::INT, "gameID"), PropertyInfo(Variant::INT, "result"), PropertyInfo(Variant::INT, "userID")));
 	ADD_SIGNAL(MethodInfo("user_stats_stored"));

@@ -390,7 +390,7 @@ class Steam: public Object {
 		Dictionary getAchievementAchievedPercent(const String& name);
 		Dictionary getAchievementAndUnlockTime(const String& name);
 		String getAchievementDisplayAttribute(const String& name, const String& key);
-		void getAchievementIcon(const String& name);
+		int getAchievementIcon(const String& name);
 		String getAchievementName(uint32_t achievement);
 		void getDownloadedLeaderboardEntry(uint64_t handle, int entryCount);
 		uint64 getGlobalStatInt(const String& name);
@@ -672,8 +672,7 @@ class Steam: public Object {
 		void _leaderboard_ugc_set(LeaderboardUGCSet_t *callData, bool bIOFailure);
 		CCallResult<Steam, NumberOfCurrentPlayers_t> callResultNumberOfCurrentPlayers;
 		void _number_of_current_players(NumberOfCurrentPlayers_t *callData, bool bIOFailure);
-		CCallResult<Steam, UserAchievementIconFetched_t> callResultUserAchievementIconFetched;
-		void _user_achievement_icon_fetched(UserAchievementIconFetched_t *callData, bool bIOFailure);
+		STEAM_CALLBACK(Steam, _user_achievement_icon_fetched, UserAchievementIconFetched_t);
 		STEAM_CALLBACK(Steam, _user_achievement_stored, UserAchievementStored_t);
 		CCallResult<Steam, UserStatsReceived_t> callResultUserStatsReceived;
 		void _user_stats_received_callresult(UserStatsReceived_t *callData, bool bIOFailure);
